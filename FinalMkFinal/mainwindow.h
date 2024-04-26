@@ -19,6 +19,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void ReadDataBase(HData &hdata);
+
     HData dataH;
     HData *refDataH = &dataH;
 

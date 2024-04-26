@@ -48,6 +48,9 @@ void PrintWindow::printTable()
         model->setData(model->index(i, 9), hdata->vecHotel[i].GetFullCost());
 
     }
+
+    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
 }
 
 
