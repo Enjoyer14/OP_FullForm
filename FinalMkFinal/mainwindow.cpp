@@ -4,6 +4,7 @@
 #include "printwindow.h"
 #include <QMessageBox>
 #include <QFile>
+#include <QTextStream>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -33,27 +34,27 @@ void MainWindow::ReadDataBase(HData &dataH)
             buff.id = count++;
             if (lineData[0].toInt() == 1) buff.corpus = Body::Alpha;
             else if (lineData[0].toInt() == 2) buff.corpus = Body::Beta;
-            else if (lineData[0].toInt() == 3) buff.corpus = Body::Delta;
-            else if (lineData[0].toInt() == 4) buff.corpus = Body::Gamma;
-            else buff.corpus = Body::Vega;
+            else if (lineData[0].toInt() == 3) buff.corpus = Body::Vega;
+            else if (lineData[0].toInt() == 4) buff.corpus = Body::Delta;
+            else buff.corpus = Body::Gamma;
 
             if (lineData[1].toInt() == 1) buff.room = RoomType::Standard;
             else if (lineData[1].toInt() == 2) buff.room = RoomType::BusinessClass;
             else if (lineData[1].toInt() == 3) buff.room = RoomType::FirstClass;
             else if (lineData[1].toInt() == 4) buff.room = RoomType::Deluxe;
-            // for (int j = 2; j < 8; j++) {
-            //     switch (lineData[j].toInt()) {
-            //     case 1: buff.favors.push_back(SwimmingPool); break;
-            //     case 2: buff.favors.push_back(Lucnh); break;
-            //     case 3: buff.favors.push_back(FitnessRoom); break;
-            //     case 4: buff.favors.push_back(Spa); break;
-            //     case 5: buff.favors.push_back(Transport); break;
-            //     case 6: buff.favors.push_back(FreeWifi); break;
-            //     }
-            // }
+            for (int j = 2; j < 8; j++) {
+                switch (lineData[j].toInt()) {
+                case 1: buff.favors.push_back(SwimmingPool); break;
+                case 2: buff.favors.push_back(Lucnh); break;
+                case 3: buff.favors.push_back(FitnessRoom); break;
+                case 4: buff.favors.push_back(Spa); break;
+                case 5: buff.favors.push_back(Transport); break;
+                case 6: buff.favors.push_back(FreeWifi); break;
+                }
+            }
             buff.cost = lineData[8].toInt();
-            n = lineData[9];
-            f = lineData[10];
+            f = lineData[9];
+            n = lineData[10];
             o = lineData[11];
             buff.fullName = f + ' ' + n + ' ' + o;
             buff.phoneNumber = lineData[12];
@@ -65,9 +66,46 @@ void MainWindow::ReadDataBase(HData &dataH)
             buff.nightsNumber = lineData[17].toInt();
             buff.fullCost = lineData[18].toInt();
             dataH.vecHotel.push_back(buff);
+            buff.favors.clear();
         }
     }
 
+}
+
+void MainWindow::WriteDataBase(HData &hdata)
+{
+    QFile file("Hotel.txt");
+    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        QTextStream stream(&file);
+        for(int i = 0; i < hdata.vecHotel.size(); i++)
+        {
+            int favors[6]{};
+            for (int j{}; j < 6; j++) {
+                for (int r{}; r < hdata.vecHotel[i].favors.size(); r++) {
+                    if (hdata.vecHotel[i].favors[r] == j + 1) {
+                        favors[j] = hdata.vecHotel[i].favors[r];
+                    }
+                }
+            }
+
+            stream << hdata.vecHotel[i].corpus << " "
+                 << hdata.vecHotel[i].room << " "
+                 << favors[0] << " " << favors[1] << " " << favors[2] << " " << favors[3] << " " << favors[4] << " " << favors[5] << " "
+                 << hdata.vecHotel[i].cost << " "
+                 << hdata.vecHotel[i].fullName << " "
+                 << hdata.vecHotel[i].phoneNumber << " "
+                 << hdata.vecHotel[i].eMail << " "
+                 << hdata.vecHotel[i].date.getDay() << " "
+                 << hdata.vecHotel[i].date.getMonth() << " "
+                 << hdata.vecHotel[i].date.getYear() << " "
+                 << hdata.vecHotel[i].nightsNumber << " "
+                   << hdata.vecHotel[i].fullCost << '\n';
+        }
+
+
+        file.close();
+    }
 }
 
 void MainWindow::on_btn_Add_clicked()
@@ -85,5 +123,12 @@ void MainWindow::on_btn_print_clicked()
     window.printTable();
     window.setModal(true);
     window.exec();
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    this->WriteDataBase(dataH);
+    this->close();
 }
 

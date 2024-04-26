@@ -20,6 +20,7 @@ public:
     ~MainWindow();
 
     void ReadDataBase(HData &hdata);
+    void WriteDataBase(HData &hdata);
 
     HData dataH;
     HData *refDataH = &dataH;
@@ -28,6 +29,8 @@ private slots:
     void on_btn_Add_clicked();
 
     void on_btn_print_clicked();
+
+    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
