@@ -94,3 +94,18 @@ void PrintWindow::on_btn_Sort_clicked()
     this->printTable();
 }
 
+
+void PrintWindow::on_btn_Search_clicked()
+{
+    SearchWin window;
+    window.hdata = this->hdata;
+    window.setModal(true);
+    window.exec();
+    this->hdata = window.shdata;
+    while(model->rowCount() != 0){
+        model->removeRows(ui->tableView->currentIndex().row(), 1);
+    }
+
+    this->printTable();
+}
+

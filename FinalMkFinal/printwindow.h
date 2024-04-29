@@ -6,6 +6,7 @@
 #include <QVector>
 #include "hdata.h"
 #include "dialog.h"
+#include "searchwin.h"
 #include <QMessageBox>
 #include <QTableWidget>
 #include <QAbstractTableModel>
@@ -34,6 +35,8 @@ private slots:
 
 
     void on_btn_Sort_clicked();
+
+    void on_btn_Search_clicked();
 
 private:
     Ui::PrintWindow *ui;

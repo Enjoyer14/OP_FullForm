@@ -69,3 +69,38 @@ bool operator > (const Date& d1, const Date& d2) {
     if (d1.getMonth() != d2.getMonth()) return d1.getMonth() > d2.getMonth();
     return d1.getDay() > d2.getDay();
 }
+
+
+
+void HData::SearchByRoomType(HData& data, HData& shdata, int arg)
+{
+    for (int i{}; i < data.vecHotel.size(); i++)
+    {
+        if (data.vecHotel[i].room == arg)
+        {
+            shdata.vecHotel.push_back(data.vecHotel[i]);
+        }
+    }
+}
+void HData::SearchByFavors(HData& data, HData& shdata, QString arg)
+{
+    for (int i{}; i < data.vecHotel.size(); i++)
+    {
+        for (int j{}; j < data.vecHotel[i].favors.size(); j++) {
+            if (data.vecHotel[i].favors[j] == 1)
+            {
+
+            }
+        }
+    }
+}
+void HData::SearchByDate(HData& data, HData& shdata)
+{
+    for (int i{}; i < data.vecHotel.size(); i++)
+    {
+        if (true)
+        {
+
+        }
+    }
+}

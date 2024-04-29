@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SearchWin</class>
+ <widget class="QDialog" name="SearchWin">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QFormLayout" name="formLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="label">
+       <property name="text">
+        <string>Поиск</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QComboBox" name="box_choosing_type">
+       <item>
+        <property name="text">
+         <string>По типу комнаты</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>По услугам</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>По дате заезда</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QPushButton" name="btn_apply">
+       <property name="text">
+        <string>Применить</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QComboBox" name="box_choosing_direct">
+       <item>
+        <property name="text">
+         <string>Стандарт</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Бизнесс класс</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Первый класс</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Делюкс</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QDateEdit" name="time"/>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
