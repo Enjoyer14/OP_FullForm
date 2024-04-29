@@ -2,7 +2,6 @@
 #ifndef ADDWINDOW_H
 #define ADDWINDOW_H
 #include <QDialog>
-#include <vector>
 #include "Hotel.h"
 #include "hdata.h"
 

@@ -1,10 +1,5 @@
 #include "printwindow.h"
 #include "ui_printwindow.h"
-#include <QMessageBox>
-#include <QTableWidget>
-#include <QAbstractTableModel>
-#include <QVariant>
-#include <QStandardItemModel>
 
 PrintWindow::PrintWindow(QWidget *parent)
     : QDialog(parent)
@@ -20,7 +15,6 @@ PrintWindow::~PrintWindow()
 
 void PrintWindow::printTable()
 {
-    QStandardItemModel *model = new QStandardItemModel(0, 10);
     ui->tableView->setModel(model);
     model->setHeaderData(0, Qt::Horizontal, "Корпус");
     model->setHeaderData(1, Qt::Horizontal, "Тип комнаты");
@@ -84,4 +78,19 @@ void PrintWindow::printTable()
 
 }
 
+
+
+void PrintWindow::on_btn_Sort_clicked()
+{
+    Dialog window;
+    window.hdata = this->hdata;
+    window.setModal(true);
+    window.exec();
+
+    while(model->rowCount() != 0){
+        model->removeRows(ui->tableView->currentIndex().row(), 1);
+    }
+
+    this->printTable();
+}
 
