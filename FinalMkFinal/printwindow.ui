@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>956</width>
-    <height>721</height>
+    <width>959</width>
+    <height>716</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,11 +20,125 @@
    <item row="0" column="1">
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QPushButton" name="btn_Sort">
+      <widget class="QLabel" name="label">
        <property name="text">
-        <string>Сотрировка</string>
+        <string>Сортировка</string>
        </property>
       </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="box_type_sort">
+       <item>
+        <property name="text">
+         <string>По корпусу</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>По типу комнаты</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>По дате заезда</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>По стоимости</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="box_direct_sort">
+       <item>
+        <property name="text">
+         <string>По возрастанию</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>По убыванию</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="btn_Sort">
+       <property name="text">
+        <string>Показать</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_2">
+       <property name="whatsThis">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       </property>
+       <property name="text">
+        <string>Поиск</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="box_type_serach">
+       <item>
+        <property name="text">
+         <string>По типу комнаты</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>По услугам</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>По дате заезда</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="box_direct_search">
+       <item>
+        <property name="text">
+         <string>Стандарт</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Бизнесс класс</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Первый класс</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Делюкс</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDateEdit" name="dateEdit"/>
      </item>
      <item>
       <widget class="QPushButton" name="btn_Search">
@@ -34,7 +148,33 @@
       </widget>
      </item>
      <item>
-      <spacer name="verticalSpacer">
+      <spacer name="verticalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <spacer name="verticalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <spacer name="verticalSpacer_2">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>

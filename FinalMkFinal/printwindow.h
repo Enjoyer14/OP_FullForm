@@ -5,8 +5,6 @@
 #include "Hotel.h"
 #include <QVector>
 #include "hdata.h"
-#include "dialog.h"
-#include "searchwin.h"
 #include <QMessageBox>
 #include <QTableWidget>
 #include <QAbstractTableModel>
@@ -26,10 +24,12 @@ public:
     ~PrintWindow();
 
     void printTable();
+    void printTableSearch();
 
-    QStandardItemModel *model = new QStandardItemModel(0, 10);
+    QStandardItemModel *model;
 
     HData *hdata;
+    HData *shdata;
 
 private slots:
 
@@ -37,6 +37,8 @@ private slots:
     void on_btn_Sort_clicked();
 
     void on_btn_Search_clicked();
+
+    void on_box_type_serach_currentIndexChanged(int index);
 
 private:
     Ui::PrintWindow *ui;

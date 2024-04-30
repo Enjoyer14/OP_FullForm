@@ -1,5 +1,5 @@
-4 1 1 0 0 0 5 0 2 Zubenko Mihail Petrovich 89503120544 FLgfdbgfdg 1 1 2020 3 2006
-2 4 1 0 3 0 5 6 10000 Ivanov Nikita Sergeevich 89503445234 sfgjfhksg@maore 12 5 2024 3 33000
-3 1 0 2 0 0 0 0 3000 Jotaro Kujo Jr4 4313344343 Gfjgfdg@sdfg.sfg 23 10 2024 10 31000
 1 1 0 0 0 0 5 6 2700 gre ug abuga 2435643243 dghsgfg@gfdh 13 5 4534 4 12800
 1 1 0 0 3 0 0 0 10000 Almas Timerbaev Airatovich 24545345 sfgf 31 3 4343 3 31000
+2 4 1 0 3 0 5 6 10000 Ivanov Nikita Sergeevich 89503445234 sfgjfhksg@maore 12 5 2024 3 33000
+3 1 0 2 0 0 0 0 3000 Jotaro Kujo Jr4 4313344343 Gfjgfdg@sdfg.sfg 23 10 2024 10 31000
+4 1 1 0 0 0 5 0 2 Zubenko Mihail Petrovich 89503120544 FLgfdbgfdg 1 1 2020 3 2006

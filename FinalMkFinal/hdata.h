@@ -13,7 +13,7 @@ public:
     static void SortByArrivalDate(HData& data, int mode); // сортировка по дате заезда
 
     static void SearchByRoomType(HData& data, HData& shdata, int arg); // поиск по типу комнаты
-    static void SearchByFavors(HData& data, HData& shdata, QString arg); // поиск по услугам
+    static void SearchByFavors(HData& data, HData& shdata, int arg); // поиск по услугам
     static void SearchByDate(HData& data, HData& shdata); // поиск по дате заезда
 };
 

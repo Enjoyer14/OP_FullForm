@@ -82,14 +82,14 @@ void HData::SearchByRoomType(HData& data, HData& shdata, int arg)
         }
     }
 }
-void HData::SearchByFavors(HData& data, HData& shdata, QString arg)
+void HData::SearchByFavors(HData& data, HData& shdata, int arg)
 {
     for (int i{}; i < data.vecHotel.size(); i++)
     {
         for (int j{}; j < data.vecHotel[i].favors.size(); j++) {
-            if (data.vecHotel[i].favors[j] == 1)
+            if (data.vecHotel[i].favors[j] == arg)
             {
-
+                shdata.vecHotel.push_back(data.vecHotel[i]);
             }
         }
     }
