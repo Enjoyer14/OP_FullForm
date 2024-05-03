@@ -10,6 +10,9 @@
 #include <QAbstractTableModel>
 #include <QVariant>
 #include <QStandardItemModel>
+#include <QObject>
+#include <QTableView>
+#include <QDebug>
 
 namespace Ui {
 class PrintWindow;
@@ -33,6 +36,8 @@ public:
 
 private slots:
 
+    void handleDoubleClick(const QModelIndex &index);
+    void handleDoubleClickHoriz(int);
 
     void on_btn_Sort_clicked();
 
@@ -42,6 +47,7 @@ private slots:
 
 private:
     Ui::PrintWindow *ui;
+
 };
 
 #endif // PRINTWINDOW_H

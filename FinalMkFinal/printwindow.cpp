@@ -6,6 +6,8 @@ PrintWindow::PrintWindow(QWidget *parent)
     , ui(new Ui::PrintWindow)
 {
     ui->setupUi(this);
+    connect(ui->tableView, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(handleDoubleClick(QModelIndex)));
+    connect(ui->tableView->verticalHeader(), SIGNAL(sectionDoubleClicked(int)), this, SLOT(handleDoubleClickHoriz(int)));
     ui->dateEdit->hide();
 }
 
@@ -214,8 +216,13 @@ void PrintWindow::on_box_type_serach_currentIndexChanged(int index)
         ui->dateEdit->show();
         break;
     }
+}
 
+void PrintWindow::handleDoubleClick(const QModelIndex &index) {
+    QMessageBox::information(this, "sfgf", QString::number(index.row()));
+}
 
-
+void PrintWindow::handleDoubleClickHoriz(int index) {
+    QMessageBox::information(this, "sfgf", QString::number(index));
 }
 
