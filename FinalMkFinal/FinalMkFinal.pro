@@ -14,6 +14,7 @@ SOURCES += \
     addwindow.cpp \
     hdata.cpp \
     main.cpp \
+    mainwindow.cpp \
     printwindow.cpp
 
 HEADERS += \
@@ -21,10 +22,12 @@ HEADERS += \
     Hotel.h \
     addwindow.h \
     hdata.h \
+    mainwindow.h \
     printwindow.h
 
 FORMS += \
     addwindow.ui \
+    mainwindow.ui \
     printwindow.ui
 
 # Default rules for deployment.
