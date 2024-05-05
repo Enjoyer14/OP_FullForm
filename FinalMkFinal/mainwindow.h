@@ -3,7 +3,17 @@
 #define MAINWINDOW_H
 #include "Hotel.h"
 #include "hdata.h"
-
+#include <QDialog>
+#include <QVector>
+#include <QMessageBox>
+#include <QTableWidget>
+#include <QAbstractTableModel>
+#include <QVariant>
+#include <QStandardItemModel>
+#include <QObject>
+#include <QTableView>
+#include <QDebug>
+#include "addwindow.h"
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -20,18 +30,32 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void ReadDataBase(HData &hdata);
-    void WriteDataBase(HData &hdata);
+    void printTable();
+    void printTableSearch();
+
+    static void ReadDataBase(HData &hdata);
+    static void WriteDataBase(HData &hdata);
+
+    QStandardItemModel *model;
 
     HData dataH;
-    HData *refDataH = &dataH;
+    HData *hdata = &dataH;
+    HData *shdata;
 
 private slots:
+
+    void handleDoubleClick(const QModelIndex &index);
+    void handleDoubleClickHoriz(int);
+
+    void on_btn_Sort_clicked();
+
+    void on_btn_Search_clicked();
+
+    void on_box_type_serach_currentIndexChanged(int index);
+
     void on_btn_Add_clicked();
 
-    void on_btn_print_clicked();
-
-    void on_pushButton_clicked();
+    void on_btn_exit_clicked();
 
 private:
     Ui::MainWindow *ui;

@@ -6,9 +6,21 @@ PrintWindow::PrintWindow(QWidget *parent)
     , ui(new Ui::PrintWindow)
 {
     ui->setupUi(this);
+
+    setWindowFlags(windowFlags() | Qt::WindowMaximizeButtonHint);
+    setWindowFlags(windowFlags() | Qt::WindowMinimizeButtonHint);
+
+    this->ReadDataBase(dataH);
+
+    this->printTable();
+
     connect(ui->tableView, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(handleDoubleClick(QModelIndex)));
     connect(ui->tableView->verticalHeader(), SIGNAL(sectionDoubleClicked(int)), this, SLOT(handleDoubleClickHoriz(int)));
+
     ui->dateEdit->hide();
+
+    ui->btn_deleteSort->hide();
+    ui->btn_deleteSearch->hide();
 }
 
 PrintWindow::~PrintWindow()
@@ -16,9 +28,98 @@ PrintWindow::~PrintWindow()
     delete ui;
 }
 
+void PrintWindow::ReadDataBase(HData &dataH)
+{
+    QFile file("Hotel.txt");
+    if(file.open(QIODevice::ReadOnly))
+    {
+        int count = 1;
+        int d, m, y;
+        QString n, f, o;
+        Hotel buff;
+        while(!file.atEnd())
+        {
+            QStringList lineData = QString(file.readLine()).split(" ");
+            buff.id = count++;
+            if (lineData[0].toInt() == 1) buff.corpus = Body::Alpha;
+            else if (lineData[0].toInt() == 2) buff.corpus = Body::Beta;
+            else if (lineData[0].toInt() == 3) buff.corpus = Body::Vega;
+            else if (lineData[0].toInt() == 4) buff.corpus = Body::Delta;
+            else buff.corpus = Body::Gamma;
+
+            if (lineData[1].toInt() == 1) buff.room = RoomType::Standard;
+            else if (lineData[1].toInt() == 2) buff.room = RoomType::BusinessClass;
+            else if (lineData[1].toInt() == 3) buff.room = RoomType::FirstClass;
+            else if (lineData[1].toInt() == 4) buff.room = RoomType::Deluxe;
+            for (int j = 2; j < 8; j++) {
+                switch (lineData[j].toInt()) {
+                case 1: buff.favors.push_back(SwimmingPool); break;
+                case 2: buff.favors.push_back(Lucnh); break;
+                case 3: buff.favors.push_back(FitnessRoom); break;
+                case 4: buff.favors.push_back(Spa); break;
+                case 5: buff.favors.push_back(Transport); break;
+                case 6: buff.favors.push_back(FreeWifi); break;
+                }
+            }
+            buff.cost = lineData[8].toInt();
+            f = lineData[9];
+            n = lineData[10];
+            o = lineData[11];
+            buff.fullName = f + ' ' + n + ' ' + o;
+            buff.phoneNumber = lineData[12];
+            buff.eMail = lineData[13];
+            d = lineData[14].toInt();
+            m = lineData[15].toInt();
+            y = lineData[16].toInt();
+            buff.date = Date(d, m, y);
+            buff.nightsNumber = lineData[17].toInt();
+            buff.fullCost = lineData[18].toInt();
+            dataH.vecHotel.push_back(buff);
+            buff.favors.clear();
+        }
+    }
+
+}
+
+void PrintWindow::WriteDataBase(HData &hdata)
+{
+    QFile file("Hotel.txt");
+    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        QTextStream stream(&file);
+        for(int i = 0; i < hdata.vecHotel.size(); i++)
+        {
+            int favors[6]{};
+            for (int j{}; j < 6; j++) {
+                for (int r{}; r < hdata.vecHotel[i].favors.size(); r++) {
+                    if (hdata.vecHotel[i].favors[r] == j + 1) {
+                        favors[j] = hdata.vecHotel[i].favors[r];
+                    }
+                }
+            }
+
+            stream << hdata.vecHotel[i].corpus << " "
+                   << hdata.vecHotel[i].room << " "
+                   << favors[0] << " " << favors[1] << " " << favors[2] << " " << favors[3] << " " << favors[4] << " " << favors[5] << " "
+                   << hdata.vecHotel[i].cost << " "
+                   << hdata.vecHotel[i].fullName << " "
+                   << hdata.vecHotel[i].phoneNumber << " "
+                   << hdata.vecHotel[i].eMail << " "
+                   << hdata.vecHotel[i].date.getDay() << " "
+                   << hdata.vecHotel[i].date.getMonth() << " "
+                   << hdata.vecHotel[i].date.getYear() << " "
+                   << hdata.vecHotel[i].nightsNumber << " "
+                   << hdata.vecHotel[i].fullCost << '\n';
+        }
+
+
+        file.close();
+    }
+}
+
 void PrintWindow::printTable()
 {
-
+    tableCurr = 0;
     model = new QStandardItemModel(0, 10);
 
     ui->tableView->setModel(model);
@@ -86,6 +187,7 @@ void PrintWindow::printTable()
 
 void PrintWindow::printTableSearch()
 {
+    tableCurr = 1;
     model = new QStandardItemModel(0, 10);
 
     ui->tableView->setModel(model);
@@ -153,6 +255,10 @@ void PrintWindow::printTableSearch()
 
 void PrintWindow::on_btn_Sort_clicked()
 {
+
+    ui->btn_deleteSearch->hide();
+    ui->btn_deleteSort->hide();
+
     switch(ui->box_type_sort->currentIndex())
     {
     case 0: HData::SortByBody(*hdata, ui->box_direct_sort->currentIndex()+1); break;
@@ -164,12 +270,14 @@ void PrintWindow::on_btn_Sort_clicked()
     delete model;
 
     this->printTable();
-
 }
 
 
 void PrintWindow::on_btn_Search_clicked()
 {
+    ui->btn_deleteSearch->hide();
+    ui->btn_deleteSort->hide();
+
     shdata = new HData();
 
     switch(ui->box_type_serach->currentIndex())
@@ -183,7 +291,6 @@ void PrintWindow::on_btn_Search_clicked()
 
     this->printTableSearch();
 
-    delete shdata;
 }
 
 
@@ -218,11 +325,97 @@ void PrintWindow::on_box_type_serach_currentIndexChanged(int index)
     }
 }
 
-void PrintWindow::handleDoubleClick(const QModelIndex &index) {
-    QMessageBox::information(this, "sfgf", QString::number(index.row()));
+void PrintWindow::on_btn_Add_clicked()
+{
+    this->hide();
+    AddWindow window;
+    window.hdata = this->hdata;
+    window.setModal(true);
+    window.exec();
+
+    this->show();
+    delete model;
+
+    this->printTable();
 }
 
-void PrintWindow::handleDoubleClickHoriz(int index) {
-    QMessageBox::information(this, "sfgf", QString::number(index));
+void PrintWindow::handleDoubleClick(const QModelIndex &index)
+{
+    this->index = index.row();
+
+    if(tableCurr == 0)
+    {
+        ui->btn_deleteSort->show();
+    }
+    else if(tableCurr == 1)
+    {
+        ui->btn_deleteSearch->show();
+    }
+}
+
+void PrintWindow::handleDoubleClickHoriz(int index)
+{
+    this->index = index;
+
+    if(tableCurr == 0)
+    {
+        ui->btn_deleteSort->show();
+    }
+    else if(tableCurr == 1)
+    {
+        ui->btn_deleteSearch->show();
+    }
+}
+
+
+void PrintWindow::on_btn_exit_clicked()
+{
+    this->WriteDataBase(dataH);
+    this->close();
+}
+
+
+void PrintWindow::on_btn_deleteSort_clicked()
+{
+    int a = QMessageBox::question(this, "Подтверждение", "Вы действительно хотите удалить этот объект(Sort)?", "Нет", "Да");
+
+    if(a == 1)
+    {
+        hdata->vecHotel.erase(hdata->vecHotel.begin() + this->index);
+    }
+
+    ui->btn_deleteSearch->hide();
+    ui->btn_deleteSort->hide();
+
+    delete model;
+
+    this->printTable();
+}
+
+
+void PrintWindow::on_btn_deleteSearch_clicked()
+{
+    int a = QMessageBox::question(this, "Подтверждение", "Вы действительно хотите удалить этот объект(Search)?", "Нет", "Да");
+
+    if(a == 1)
+    {
+        int finder = shdata->vecHotel[index].id;
+        shdata->vecHotel.erase(shdata->vecHotel.begin() + index);
+        for(int i = 0; i < hdata->vecHotel.size(); i++)
+        {
+            if(hdata->vecHotel[i].id == finder)
+            {
+                hdata->vecHotel.erase(hdata->vecHotel.begin() + i);
+            }
+        }
+    }
+
+    ui->btn_deleteSearch->hide();
+    ui->btn_deleteSort->hide();
+
+    delete model;
+
+    this->printTableSearch();
+
 }
 

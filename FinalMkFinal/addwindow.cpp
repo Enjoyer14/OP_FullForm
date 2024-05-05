@@ -17,8 +17,10 @@ AddWindow::~AddWindow()
 void AddWindow::on_btn_Add_clicked()
 {
     Hotel buff;
-    buff.id = 1;
-        switch(ui->box_Corpus->currentIndex()+1)
+
+    buff.id = hdata->vecHotel.size()+1;
+
+    switch(ui->box_Corpus->currentIndex()+1)
 {
     case 1: buff.SetCorpus(1); break;
     case 2: buff.SetCorpus(2); break;

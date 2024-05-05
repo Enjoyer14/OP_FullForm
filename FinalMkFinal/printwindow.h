@@ -13,6 +13,7 @@
 #include <QObject>
 #include <QTableView>
 #include <QDebug>
+#include "addwindow.h"
 
 namespace Ui {
 class PrintWindow;
@@ -29,10 +30,17 @@ public:
     void printTable();
     void printTableSearch();
 
+    static void ReadDataBase(HData &hdata);
+    static void WriteDataBase(HData &hdata);
+
     QStandardItemModel *model;
 
-    HData *hdata;
+    HData dataH;
+    HData *hdata = &dataH;
     HData *shdata;
+
+    int tableCurr;
+    int index;
 
 private slots:
 
@@ -44,6 +52,14 @@ private slots:
     void on_btn_Search_clicked();
 
     void on_box_type_serach_currentIndexChanged(int index);
+
+    void on_btn_Add_clicked();
+
+    void on_btn_exit_clicked();
+
+    void on_btn_deleteSort_clicked();
+
+    void on_btn_deleteSearch_clicked();
 
 private:
     Ui::PrintWindow *ui;
