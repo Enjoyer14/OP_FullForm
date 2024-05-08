@@ -14,7 +14,7 @@ public:
 
     static void SearchByRoomType(HData& data, HData& shdata, int arg); // поиск по типу комнаты
     static void SearchByFavors(HData& data, HData& shdata, int arg); // поиск по услугам
-    static void SearchByDate(HData& data, HData& shdata); // поиск по дате заезда
+    static void SearchByDate(HData& data, HData& shdata, int d, int m, int y); // поиск по дате заезда
 };
 
 #endif // HDATA_H

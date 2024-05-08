@@ -94,13 +94,15 @@ void HData::SearchByFavors(HData& data, HData& shdata, int arg)
         }
     }
 }
-void HData::SearchByDate(HData& data, HData& shdata)
+void HData::SearchByDate(HData& data, HData& shdata, int d, int m, int y)
 {
     for (int i{}; i < data.vecHotel.size(); i++)
     {
-        if (true)
+        if (data.vecHotel[i].date.getDay() == d
+            && data.vecHotel[i].date.getMonth() == m
+            && data.vecHotel[i].date.getYear() == y)
         {
-
+            shdata.vecHotel.push_back(data.vecHotel[i]);
         }
     }
 }

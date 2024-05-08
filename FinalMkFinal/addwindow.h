@@ -1,4 +1,4 @@
-#pragma once
+ #pragma once
 #ifndef ADDWINDOW_H
 #define ADDWINDOW_H
 #include <QDialog>

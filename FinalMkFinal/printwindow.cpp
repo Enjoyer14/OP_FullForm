@@ -5,7 +5,10 @@ PrintWindow::PrintWindow(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::PrintWindow)
 {
+
     ui->setupUi(this);
+    // *parent->setStyleSheet();
+    // parentWidget()->setStyleSheet("background-color: #f0f0f0; border: 1px solid #ccc; margin: 10px; border-radius: 10px;");
 
     setWindowFlags(windowFlags() | Qt::WindowMaximizeButtonHint);
     setWindowFlags(windowFlags() | Qt::WindowMinimizeButtonHint);
@@ -134,7 +137,7 @@ void PrintWindow::printTable()
     model->setHeaderData(8, Qt::Horizontal, "Количество ночей");
     model->setHeaderData(9, Qt::Horizontal, "Полная стоимость");
 
-
+    ui->tableView->setStyleSheet("font-weight: bold; font-size: 12px; color: #333;");
     QString favors;
     for(int i = 0; i < hdata->vecHotel.size(); i++)
     {
@@ -201,6 +204,7 @@ void PrintWindow::printTableSearch()
     model->setHeaderData(7, Qt::Horizontal, "Дата заезда");
     model->setHeaderData(8, Qt::Horizontal, "Количество ночей");
     model->setHeaderData(9, Qt::Horizontal, "Полная стоимость");
+
 
 
     QString favors;
@@ -284,7 +288,7 @@ void PrintWindow::on_btn_Search_clicked()
     {
     case 0: HData::SearchByRoomType(*hdata, *shdata, ui->box_direct_search->currentIndex()+1); break;
     case 1: HData::SearchByFavors(*hdata, *shdata, ui->box_direct_search->currentIndex()+1); break;
-    case 2: break;
+    case 2: HData::SearchByDate(*hdata, *shdata, ui->dateEdit->date().day(), ui->dateEdit->date().month(), ui->dateEdit->date().year()); break;
     }
 
     delete model;
@@ -417,5 +421,39 @@ void PrintWindow::on_btn_deleteSearch_clicked()
 
     this->printTableSearch();
 
+}
+
+void PrintWindow::on_btn_diagram_clicked()
+{
+    double s = 0, b = 0, p = 0, d = 0;
+
+    for(int i = 0; i < hdata->vecHotel.size(); i++)
+    {
+        switch(hdata->vecHotel[i].room)
+        {
+        case 1: s++; break;
+        case 2: b++; break;
+        case 3: p++; break;
+        case 4: d++; break;
+        }
+    }
+
+
+    QPieSeries *series = new QPieSeries();
+
+    series->append("Стандарт", s);
+    series->append("Бизнес класс", b);
+    series->append("Первый класс", p);
+    series->append("Делюкс", d);
+
+    QChart *chart = new QChart();
+    chart->addSeries(series);
+    chart->setTitle("Круговая диаграмма по типу комнат");
+
+    QChartView *chartView = new QChartView(chart);
+
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+    chartView->show();
 }
 

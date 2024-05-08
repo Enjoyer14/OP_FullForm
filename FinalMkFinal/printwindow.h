@@ -14,6 +14,7 @@
 #include <QTableView>
 #include <QDebug>
 #include "addwindow.h"
+#include <QtCharts>
 
 namespace Ui {
 class PrintWindow;
@@ -60,6 +61,8 @@ private slots:
     void on_btn_deleteSort_clicked();
 
     void on_btn_deleteSearch_clicked();
+
+    void on_btn_diagram_clicked();
 
 private:
     Ui::PrintWindow *ui;

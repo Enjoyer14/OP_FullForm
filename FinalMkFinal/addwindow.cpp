@@ -16,12 +16,13 @@ AddWindow::~AddWindow()
 
 void AddWindow::on_btn_Add_clicked()
 {
+
     Hotel buff;
 
     buff.id = hdata->vecHotel.size()+1;
 
     switch(ui->box_Corpus->currentIndex()+1)
-{
+    {
     case 1: buff.SetCorpus(1); break;
     case 2: buff.SetCorpus(2); break;
     case 3: buff.SetCorpus(3); break;
@@ -44,7 +45,29 @@ void AddWindow::on_btn_Add_clicked()
     if(ui->checkBox_Transport->isChecked()){ buff.favors.push_back(Service::Transport);}
     if(ui->checkBox_Wifi->isChecked()) {buff.favors.push_back(Service::FreeWifi);}
 
-    buff.fullName = ui->lineEdit_FIO->text();
+    if(ui->lineEdit_FIO->text().isEmpty())
+    {
+        ui->lineEdit_FIO->setText("-");
+    }
+    if(ui->lineEdit_Name->text().isEmpty())
+    {
+        ui->lineEdit_Name->setText("-");
+    }
+    if(ui->lineEdit_FatherName->text().isEmpty())
+    {
+        ui->lineEdit_FatherName->setText("-");
+    }
+
+    if(ui->lineEdit_PhoneNumber->text().isEmpty())
+    {
+        ui->lineEdit_PhoneNumber->setText("-");
+    }
+    if(ui->lineEdit_Email->text().isEmpty())
+    {
+        ui->lineEdit_Email->setText("-");
+    }
+
+    buff.fullName = ui->lineEdit_FIO->text() + " " + ui->lineEdit_Name->text() + " " + ui->lineEdit_FatherName->text();
     buff.cost = ui->lineEdit_Cost->text().toInt();
     buff.eMail = ui->lineEdit_Email->text();
     buff.phoneNumber = ui->lineEdit_PhoneNumber->text();
@@ -54,8 +77,10 @@ void AddWindow::on_btn_Add_clicked()
 
     buff.date.setDate(ui->dateEdit->date().day(), ui->dateEdit->date().month(), ui->dateEdit->date().year());
 
+
     hdata->vecHotel.push_back(buff);
 
     this->close();
+
 }
 
