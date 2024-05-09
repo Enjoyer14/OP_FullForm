@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>983</width>
-    <height>721</height>
+    <width>449</width>
+    <height>658</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <item row="3" column="0">
     <layout class="QFormLayout" name="formLayout">
      <item row="0" column="0">
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="label_bodu">
        <property name="text">
         <string>Корпус</string>
        </property>
@@ -84,7 +84,7 @@
       </widget>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="label_f">
        <property name="text">
         <string>Фамилия</string>
        </property>
@@ -109,59 +109,56 @@
        <item>
         <widget class="QCheckBox" name="checkBox_Pool">
          <property name="text">
-          <string>Бассейн</string>
+          <string>Бассейн(+1200 руб/сутки)</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QCheckBox" name="checkBox_Lunch">
          <property name="text">
-          <string>Завтрак/Обед/Ужин</string>
+          <string>Ресторан(+1500 руб/сутки)</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QCheckBox" name="checkBox_Fitness">
          <property name="text">
-          <string>Фитнесс-зал</string>
+          <string>Фитнесс-зал(+600 руб/сутки)</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QCheckBox" name="checkBox_Spa">
          <property name="text">
-          <string>Спа</string>
+          <string>Спа(+2000 руб/сутки)</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QCheckBox" name="checkBox_Transport">
          <property name="text">
-          <string>Транспорт</string>
+          <string>Транспорт(+700 руб/сутки)</string>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QCheckBox" name="checkBox_Wifi">
          <property name="text">
-          <string>Wi-fi</string>
+          <string>Wi-fi(+350 руб/сутки)</string>
          </property>
         </widget>
        </item>
       </layout>
      </item>
      <item row="6" column="0">
-      <widget class="QLabel" name="label_5">
+      <widget class="QLabel" name="label_cost">
        <property name="text">
         <string>Цена</string>
        </property>
       </widget>
      </item>
-     <item row="6" column="1">
-      <widget class="QLineEdit" name="lineEdit_Cost"/>
-     </item>
      <item row="7" column="0">
-      <widget class="QLabel" name="label_7">
+      <widget class="QLabel" name="label_mail">
        <property name="text">
         <string>E-mail</string>
        </property>
@@ -171,7 +168,7 @@
       <widget class="QLineEdit" name="lineEdit_Email"/>
      </item>
      <item row="8" column="0">
-      <widget class="QLabel" name="label_6">
+      <widget class="QLabel" name="label_phone">
        <property name="text">
         <string>Номер телефона</string>
        </property>
@@ -199,7 +196,7 @@
        <property name="minimumDate">
         <date>
          <year>2024</year>
-         <month>1</month>
+         <month>5</month>
          <day>1</day>
         </date>
        </property>
@@ -209,7 +206,7 @@
       </widget>
      </item>
      <item row="10" column="0">
-      <widget class="QLabel" name="label_9">
+      <widget class="QLabel" name="label_nights">
        <property name="text">
         <string>Количество ночей</string>
        </property>
@@ -219,7 +216,7 @@
       <widget class="QLineEdit" name="lineEdit_NightCount"/>
      </item>
      <item row="3" column="0">
-      <widget class="QLabel" name="label_10">
+      <widget class="QLabel" name="label_n">
        <property name="text">
         <string>Имя</string>
        </property>
@@ -229,7 +226,7 @@
       <widget class="QLineEdit" name="lineEdit_Name"/>
      </item>
      <item row="4" column="0">
-      <widget class="QLabel" name="label_11">
+      <widget class="QLabel" name="label_o">
        <property name="text">
         <string>Отчество</string>
        </property>
@@ -239,6 +236,16 @@
       <widget class="QLineEdit" name="lineEdit_FatherName">
        <property name="text">
         <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QLabel" name="label_Cost">
+       <property name="autoFillBackground">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string>3400</string>
        </property>
       </widget>
      </item>
@@ -270,6 +277,16 @@ color: rgb(0, 0, 0);</string>
       </widget>
      </item>
     </layout>
+   </item>
+   <item row="5" column="0">
+    <widget class="QLabel" name="label_isCorrect">
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 0, 0);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

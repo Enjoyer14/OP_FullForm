@@ -23,9 +23,7 @@
    <item row="0" column="0">
     <widget class="QTableView" name="tableView">
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(0, 255, 127);
-color: rgb(255, 0, 0);
-font: 9pt &quot;Segoe UI&quot;;</string>
+      <string notr="true"/>
      </property>
     </widget>
    </item>
@@ -33,11 +31,28 @@ font: 9pt &quot;Segoe UI&quot;;</string>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QPushButton" name="btn_Add">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>10</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>9</pointsize>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(0, 0, 0);
+        <string notr="true">QPushButton{
+color: rgb(0, 0, 0);
 background-color: rgb(0, 170, 0);
 border-color: rgb(0, 85, 0);
-selection-background-color: rgb(0, 255, 0);</string>
+}
+QPushButton::hover
+{
+	background-color: rgb(0, 255, 0);
+}</string>
        </property>
        <property name="text">
         <string>Добавить</string>
@@ -59,15 +74,25 @@ selection-background-color: rgb(0, 255, 0);</string>
      </item>
      <item>
       <widget class="QPushButton" name="btn_deleteSort">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+        </font>
+       </property>
        <property name="text">
-        <string>Удалить 1</string>
+        <string>Удалить</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="btn_deleteSearch">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+        </font>
+       </property>
        <property name="text">
-        <string>Удалить 2</string>
+        <string>Удалить</string>
        </property>
       </widget>
      </item>
@@ -76,16 +101,26 @@ selection-background-color: rgb(0, 255, 0);</string>
        <property name="orientation">
         <enum>Qt::Vertical</enum>
        </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
        <property name="sizeHint" stdset="0">
         <size>
          <width>20</width>
-         <height>40</height>
+         <height>20</height>
         </size>
        </property>
       </spacer>
      </item>
      <item>
       <widget class="QLabel" name="label">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+         <bold>false</bold>
+        </font>
+       </property>
        <property name="text">
         <string>Сортировка</string>
        </property>
@@ -131,8 +166,16 @@ selection-background-color: rgb(0, 255, 0);</string>
      </item>
      <item>
       <widget class="QPushButton" name="btn_Sort">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+        </font>
+       </property>
+       <property name="mouseTracking">
+        <bool>false</bool>
+       </property>
        <property name="styleSheet">
-        <string notr="true">color: rgb(0, 255, 127);</string>
+        <string notr="true"/>
        </property>
        <property name="text">
         <string>Показать</string>
@@ -154,6 +197,12 @@ selection-background-color: rgb(0, 255, 0);</string>
      </item>
      <item>
       <widget class="QLabel" name="label_2">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
        <property name="whatsThis">
         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
@@ -217,7 +266,7 @@ selection-background-color: rgb(0, 255, 0);</string>
        <property name="minimumDate">
         <date>
          <year>2024</year>
-         <month>1</month>
+         <month>5</month>
          <day>1</day>
         </date>
        </property>
@@ -227,7 +276,7 @@ selection-background-color: rgb(0, 255, 0);</string>
        <property name="date">
         <date>
          <year>2024</year>
-         <month>1</month>
+         <month>5</month>
          <day>1</day>
         </date>
        </property>
@@ -235,6 +284,11 @@ selection-background-color: rgb(0, 255, 0);</string>
      </item>
      <item>
       <widget class="QPushButton" name="btn_Search">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+        </font>
+       </property>
        <property name="text">
         <string>Показать</string>
        </property>
@@ -255,6 +309,11 @@ selection-background-color: rgb(0, 255, 0);</string>
      </item>
      <item>
       <widget class="QPushButton" name="btn_diagram">
+       <property name="font">
+        <font>
+         <family>Arial</family>
+        </font>
+       </property>
        <property name="text">
         <string>Диаграмма</string>
        </property>
@@ -289,10 +348,15 @@ selection-background-color: rgb(0, 255, 0);</string>
      <item>
       <widget class="QPushButton" name="btn_exit">
        <property name="styleSheet">
-        <string notr="true">color: rgb(0, 0, 0);
-background-color: rgb(170, 0, 0);
+        <string notr="true">QPushButton{
+color: rgb(0, 0, 0);
+	background-color: rgb(255, 0, 0);
 border-color: rgb(85, 0, 0);
-selection-background-color: rgb(255, 0, 0);</string>
+selection-background-color: rgb(255, 0, 0);
+}
+QPushButton::hover{
+	background-color: rgb(170, 0, 0);
+}</string>
        </property>
        <property name="text">
         <string>Выход</string>

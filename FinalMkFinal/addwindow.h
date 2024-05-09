@@ -22,6 +22,10 @@ public:
 private slots:
     void on_btn_Add_clicked();
 
+    void on_box_TypeRoom_currentIndexChanged(int index);
+
+    void on_box_Corpus_currentIndexChanged(int index);
+
 private:
     Ui::AddWindow *ui;
 };

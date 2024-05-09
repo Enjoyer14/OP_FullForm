@@ -7,8 +7,6 @@ PrintWindow::PrintWindow(QWidget *parent)
 {
 
     ui->setupUi(this);
-    // *parent->setStyleSheet();
-    // parentWidget()->setStyleSheet("background-color: #f0f0f0; border: 1px solid #ccc; margin: 10px; border-radius: 10px;");
 
     setWindowFlags(windowFlags() | Qt::WindowMaximizeButtonHint);
     setWindowFlags(windowFlags() | Qt::WindowMinimizeButtonHint);
@@ -130,14 +128,15 @@ void PrintWindow::printTable()
     model->setHeaderData(1, Qt::Horizontal, "Тип комнаты");
     model->setHeaderData(2, Qt::Horizontal, "ФИО");
     model->setHeaderData(3, Qt::Horizontal, "Услуги");
-    model->setHeaderData(4, Qt::Horizontal, "Цена");
+    model->setHeaderData(4, Qt::Horizontal, "Цена за сутки");
     model->setHeaderData(5, Qt::Horizontal, "Номер телефона");
     model->setHeaderData(6, Qt::Horizontal, "E-Mail");
     model->setHeaderData(7, Qt::Horizontal, "Дата заезда");
     model->setHeaderData(8, Qt::Horizontal, "Количество ночей");
     model->setHeaderData(9, Qt::Horizontal, "Полная стоимость");
 
-    ui->tableView->setStyleSheet("font-weight: bold; font-size: 12px; color: #333;");
+    ui->tableView->setStyleSheet("font-weight: semibold; font-size: 12px; color: #333;");
+
     QString favors;
     for(int i = 0; i < hdata->vecHotel.size(); i++)
     {
@@ -198,7 +197,7 @@ void PrintWindow::printTableSearch()
     model->setHeaderData(1, Qt::Horizontal, "Тип комнаты");
     model->setHeaderData(2, Qt::Horizontal, "ФИО");
     model->setHeaderData(3, Qt::Horizontal, "Услуги");
-    model->setHeaderData(4, Qt::Horizontal, "Цена");
+    model->setHeaderData(4, Qt::Horizontal, "Цена за сутки");
     model->setHeaderData(5, Qt::Horizontal, "Номер телефона");
     model->setHeaderData(6, Qt::Horizontal, "E-Mail");
     model->setHeaderData(7, Qt::Horizontal, "Дата заезда");
@@ -381,9 +380,9 @@ void PrintWindow::on_btn_exit_clicked()
 
 void PrintWindow::on_btn_deleteSort_clicked()
 {
-    int a = QMessageBox::question(this, "Подтверждение", "Вы действительно хотите удалить этот объект(Sort)?", "Нет", "Да");
+    int a = QMessageBox::question(this, "Подтверждение", "Вы действительно хотите удалить этот объект(Sort)?", "Да", "Нет");
 
-    if(a == 1)
+    if(a == 0)
     {
         hdata->vecHotel.erase(hdata->vecHotel.begin() + this->index);
     }
@@ -399,9 +398,9 @@ void PrintWindow::on_btn_deleteSort_clicked()
 
 void PrintWindow::on_btn_deleteSearch_clicked()
 {
-    int a = QMessageBox::question(this, "Подтверждение", "Вы действительно хотите удалить этот объект(Search)?", "Нет", "Да");
+    int a = QMessageBox::question(this, "Подтверждение", "Вы действительно хотите удалить этот объект(Search)?", "Да", "Нет");
 
-    if(a == 1)
+    if(a == 0)
     {
         int finder = shdata->vecHotel[index].id;
         shdata->vecHotel.erase(shdata->vecHotel.begin() + index);
@@ -441,10 +440,11 @@ void PrintWindow::on_btn_diagram_clicked()
 
     QPieSeries *series = new QPieSeries();
 
-    series->append("Стандарт", s);
-    series->append("Бизнес класс", b);
-    series->append("Первый класс", p);
-    series->append("Делюкс", d);
+
+    series->append("Стандарт: "+QString::number(s), s);
+    series->append("Бизнес класс: "+QString::number(b), b);
+    series->append("Первый класс: "+QString::number(p), p);
+    series->append("Делюкс: "+QString::number(d), d);
 
     QChart *chart = new QChart();
     chart->addSeries(series);
@@ -453,7 +453,8 @@ void PrintWindow::on_btn_diagram_clicked()
     QChartView *chartView = new QChartView(chart);
 
     chartView->setRenderHint(QPainter::Antialiasing);
-
+    chartView->setWindowTitle("Диаграмма");
+    chartView->resize(600, 500);
     chartView->show();
 }
 

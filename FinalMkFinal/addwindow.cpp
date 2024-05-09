@@ -14,10 +14,18 @@ AddWindow::~AddWindow()
     delete ui;
 }
 
+bool isNumber(const QString &str) {
+    bool ok;
+    str.toLongLong(&ok);
+    return ok;
+}
+
 void AddWindow::on_btn_Add_clicked()
 {
-
     Hotel buff;
+    bool isCorrect;
+
+    isCorrect = true;
 
     buff.id = hdata->vecHotel.size()+1;
 
@@ -47,12 +55,26 @@ void AddWindow::on_btn_Add_clicked()
 
     if(ui->lineEdit_FIO->text().isEmpty())
     {
-        ui->lineEdit_FIO->setText("-");
+        isCorrect = false;
+        ui->label_f->setStyleSheet("color: red;");
+        ui->label_isCorrect->setText("Введите фамилию!");
     }
+    else
+    {
+        ui->label_f->setStyleSheet("color: black;");
+    }
+
     if(ui->lineEdit_Name->text().isEmpty())
     {
-        ui->lineEdit_Name->setText("-");
+        isCorrect = false;
+        ui->label_n->setStyleSheet("color: red;");
+        ui->label_isCorrect->setText("Введите имя!");
     }
+    else
+    {
+        ui->label_n->setStyleSheet("color: black;");
+    }
+
     if(ui->lineEdit_FatherName->text().isEmpty())
     {
         ui->lineEdit_FatherName->setText("-");
@@ -60,27 +82,95 @@ void AddWindow::on_btn_Add_clicked()
 
     if(ui->lineEdit_PhoneNumber->text().isEmpty())
     {
-        ui->lineEdit_PhoneNumber->setText("-");
+        isCorrect = false;
+        ui->label_phone->setStyleSheet("color: red;");
     }
+    else
+    {
+        ui->label_phone->setStyleSheet("color: black;");
+    }
+
     if(ui->lineEdit_Email->text().isEmpty())
     {
         ui->lineEdit_Email->setText("-");
     }
 
     buff.fullName = ui->lineEdit_FIO->text() + " " + ui->lineEdit_Name->text() + " " + ui->lineEdit_FatherName->text();
-    buff.cost = ui->lineEdit_Cost->text().toInt();
-    buff.eMail = ui->lineEdit_Email->text();
-    buff.phoneNumber = ui->lineEdit_PhoneNumber->text();
-    buff.nightsNumber = ui->lineEdit_NightCount->text().toInt();
 
-    buff.fullCost = ((buff.cost*buff.nightsNumber) + (buff.favors.size() * 1000));
+    // if (isNumber(ui->lineEdit_Cost->text()))
+    // {
+    //     buff.cost = ui->lineEdit_Cost->text().toInt();
+    //     ui->label_cost->setStyleSheet("color: black;");
+    // }
+    // else
+    // {
+    //     isCorrect = false;
+    //     ui->label_cost->setStyleSheet("color: red;");
+    // }
+
+    buff.SetCost();
+
+    ui->label_Cost->setText(QString::number(buff.cost));
+
+    buff.eMail = ui->lineEdit_Email->text();
+
+    if (isNumber(ui->lineEdit_PhoneNumber->text()))
+    {
+        buff.phoneNumber = ui->lineEdit_PhoneNumber->text();
+        ui->label_phone->setStyleSheet("color: black;");
+    }
+    else
+    {
+        isCorrect = false;
+        ui->label_phone->setStyleSheet("color: red;");
+    }
+
+    if (isNumber(ui->lineEdit_NightCount->text()))
+    {
+        buff.nightsNumber = ui->lineEdit_NightCount->text().toInt();
+        ui->label_nights->setStyleSheet("color: black;");
+    }
+    else
+    {
+        isCorrect = false;
+        ui->label_nights->setStyleSheet("color: red;");
+    }
 
     buff.date.setDate(ui->dateEdit->date().day(), ui->dateEdit->date().month(), ui->dateEdit->date().year());
 
 
-    hdata->vecHotel.push_back(buff);
+    if(isCorrect)
+    {
+        buff.SetFullCost();
+        hdata->vecHotel.push_back(buff);
+        this->close();
+    }
+    else
+    {
+     ui->label_isCorrect->setText("Неправильные значения!");
+    }
 
-    this->close();
+}
 
+
+void AddWindow::on_box_TypeRoom_currentIndexChanged(int index)
+{
+    ui->label_Cost->clear();
+    Hotel buff;
+    buff.SetCorpus(ui->box_Corpus->currentIndex()+1);
+    buff.SetTypeRoom(index + 1);
+    buff.SetCost();
+    ui->label_Cost->setText(QString::number(buff.cost));
+}
+
+
+void AddWindow::on_box_Corpus_currentIndexChanged(int index)
+{
+    ui->label_Cost->clear();
+    Hotel buff;
+    buff.SetCorpus(index+1);
+    buff.SetTypeRoom(ui->box_TypeRoom->currentIndex() + 1);
+    buff.SetCost();
+    ui->label_Cost->setText(QString::number(buff.cost));
 }
 

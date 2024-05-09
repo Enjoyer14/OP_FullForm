@@ -40,13 +40,16 @@ public:
     QString GetBody();
     QString GetRoom();
     std::vector<Service> GetFavors();
+    void SetCost();
     int GetCost();
     QString GetFullName();
     QString GetPhoneNumber();
     QString GetEMail();
     QString GetDate();
     int GetNightsNumber();
+
     int GetFullCost();
+    void SetFullCost();
 
 
 
