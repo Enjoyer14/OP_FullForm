@@ -7,8 +7,9 @@ AddWindow::AddWindow(QWidget *parent)
     , ui(new Ui::AddWindow)
 {
     ui->setupUi(this);
+    ui->lineEdit_PhoneNumber->setValidator(new QDoubleValidator(0,1000000000000000,0,this));
+    ui->lineEdit_NightCount->setValidator(new QIntValidator(1, 100, this));
 }
-
 AddWindow::~AddWindow()
 {
     delete ui;
@@ -90,12 +91,7 @@ void AddWindow::on_btn_Add_clicked()
         ui->label_phone->setStyleSheet("color: black;");
     }
 
-    if(ui->lineEdit_Email->text().isEmpty())
-    {
-        ui->lineEdit_Email->setText("-");
-    }
-
-    buff.fullName = ui->lineEdit_FIO->text() + " " + ui->lineEdit_Name->text() + " " + ui->lineEdit_FatherName->text();
+    buff.fullName = ui->lineEdit_FIO->text().remove(QChar::Space) + " " + ui->lineEdit_Name->text().remove(QChar::Space) + " " + ui->lineEdit_FatherName->text().remove(QChar::Space);
 
     // if (isNumber(ui->lineEdit_Cost->text()))
     // {
@@ -112,9 +108,7 @@ void AddWindow::on_btn_Add_clicked()
 
     ui->label_Cost->setText(QString::number(buff.cost));
 
-    buff.eMail = ui->lineEdit_Email->text();
-
-    if (isNumber(ui->lineEdit_PhoneNumber->text()))
+    if (isNumber(ui->lineEdit_PhoneNumber->text()) && ui->lineEdit_PhoneNumber->text().toLongLong() > 79000000000)
     {
         buff.phoneNumber = ui->lineEdit_PhoneNumber->text();
         ui->label_phone->setStyleSheet("color: black;");
@@ -134,6 +128,17 @@ void AddWindow::on_btn_Add_clicked()
     {
         isCorrect = false;
         ui->label_nights->setStyleSheet("color: red;");
+    }
+
+    if(ui->lineEdit_Email->text().indexOf("@") > 0)
+    {
+        buff.eMail = ui->lineEdit_Email->text();
+        ui->label_mail->setStyleSheet("color: black;");
+    }
+    else
+    {
+        isCorrect = false;
+        ui->label_mail->setStyleSheet("color: red;");
     }
 
     buff.date.setDate(ui->dateEdit->date().day(), ui->dateEdit->date().month(), ui->dateEdit->date().year());
@@ -173,4 +178,6 @@ void AddWindow::on_box_Corpus_currentIndexChanged(int index)
     buff.SetCost();
     ui->label_Cost->setText(QString::number(buff.cost));
 }
+
+
 

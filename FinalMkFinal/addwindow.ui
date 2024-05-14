@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>AddInfo</string>
+   <string>Добавление бронирования</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="3" column="0">
@@ -95,6 +95,9 @@
        <property name="text">
         <string/>
        </property>
+       <property name="maxLength">
+        <number>40</number>
+       </property>
       </widget>
      </item>
      <item row="5" column="0">
@@ -175,7 +178,17 @@
       </widget>
      </item>
      <item row="8" column="1">
-      <widget class="QLineEdit" name="lineEdit_PhoneNumber"/>
+      <widget class="QLineEdit" name="lineEdit_PhoneNumber">
+       <property name="inputMask">
+        <string/>
+       </property>
+       <property name="maxLength">
+        <number>11</number>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>false</bool>
+       </property>
+      </widget>
      </item>
      <item row="9" column="0">
       <widget class="QLabel" name="label_8">
@@ -223,7 +236,11 @@
       </widget>
      </item>
      <item row="3" column="1">
-      <widget class="QLineEdit" name="lineEdit_Name"/>
+      <widget class="QLineEdit" name="lineEdit_Name">
+       <property name="maxLength">
+        <number>40</number>
+       </property>
+      </widget>
      </item>
      <item row="4" column="0">
       <widget class="QLabel" name="label_o">
@@ -236,6 +253,9 @@
       <widget class="QLineEdit" name="lineEdit_FatherName">
        <property name="text">
         <string/>
+       </property>
+       <property name="maxLength">
+        <number>40</number>
        </property>
       </widget>
      </item>

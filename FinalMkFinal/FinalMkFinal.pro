@@ -15,7 +15,8 @@ SOURCES += \
     hdata.cpp \
     main.cpp \
     mainwindow.cpp \
-    printwindow.cpp
+    printwindow.cpp \
+    report.cpp
 
 HEADERS += \
     Date.h \
@@ -23,12 +24,14 @@ HEADERS += \
     addwindow.h \
     hdata.h \
     mainwindow.h \
-    printwindow.h
+    printwindow.h \
+    report.h
 
 FORMS += \
     addwindow.ui \
     mainwindow.ui \
-    printwindow.ui
+    printwindow.ui \
+    report.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

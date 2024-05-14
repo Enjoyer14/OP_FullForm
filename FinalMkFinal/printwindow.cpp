@@ -458,3 +458,61 @@ void PrintWindow::on_btn_diagram_clicked()
     chartView->show();
 }
 
+void PrintWindow::report_creator(int d, int m, int y)
+{
+    QMessageBox::information(this, "success", "yes");
+    QString title = hdata->vecHotel[index].GetDate();
+
+    QFile file(title);
+
+    if(file.open(QIODevice::WriteOnly | QIODevice::Text))
+    {
+        QTextStream stream(&file);
+
+        for(int i = 0; i < hdata->vecHotel.size(); i++)
+        {
+            if(hdata->vecHotel[i].date.getDay() == d &&
+                hdata->vecHotel[i].date.getMonth() == m &&
+                hdata->vecHotel[i].date.getYear() == y)
+            {
+            int favors[6]{};
+            for (int j{}; j < 6; j++) {
+                for (int r{}; r < hdata->vecHotel[i].favors.size(); r++) {
+                    if (hdata->vecHotel[i].favors[r] == j + 1) {
+                        favors[j] = hdata->vecHotel[i].favors[r];
+                    }
+                }
+            }
+
+            stream << hdata->vecHotel[i].corpus << " "
+                   << hdata->vecHotel[i].room << " "
+                   << favors[0] << " " << favors[1] << " " << favors[2] << " " << favors[3] << " " << favors[4] << " " << favors[5] << " "
+                   << hdata->vecHotel[i].cost << " "
+                   << hdata->vecHotel[i].fullName << " "
+                   << hdata->vecHotel[i].phoneNumber << " "
+                   << hdata->vecHotel[i].eMail << " "
+                   << hdata->vecHotel[i].date.getDay() << " "
+                   << hdata->vecHotel[i].date.getMonth() << " "
+                   << hdata->vecHotel[i].date.getYear() << " "
+                   << hdata->vecHotel[i].nightsNumber << " "
+                   << hdata->vecHotel[i].fullCost << '\n';
+            }
+        }
+
+        }
+        file.close();
+    }
+
+
+    void PrintWindow::on_btn_report_clicked()
+    {
+        this->hide();
+        Report window;
+        window.hdata = this->hdata;
+        window.index = this->index;
+        window.setModal(true);
+        window.exec();
+
+        this->show();
+    }
+

@@ -15,6 +15,7 @@
 #include <QDebug>
 #include "addwindow.h"
 #include <QtCharts>
+#include"report.h"
 
 namespace Ui {
 class PrintWindow;
@@ -63,6 +64,10 @@ private slots:
     void on_btn_deleteSearch_clicked();
 
     void on_btn_diagram_clicked();
+
+    void report_creator(int d, int m, int y);
+
+    void on_btn_report_clicked();
 
 private:
     Ui::PrintWindow *ui;

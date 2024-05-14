@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>PrintInfo</string>
+   <string>Главное окно</string>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -46,12 +46,11 @@
        <property name="styleSheet">
         <string notr="true">QPushButton{
 color: rgb(0, 0, 0);
-background-color: rgb(0, 170, 0);
-border-color: rgb(0, 85, 0);
+border-color: rgb(85, 0, 0);
+	selection-background-color: rgb(112, 255, 60);
 }
-QPushButton::hover
-{
-	background-color: rgb(0, 255, 0);
+QPushButton::hover{
+	background-color: rgb(82, 170, 11);
 }</string>
        </property>
        <property name="text">
@@ -333,6 +332,18 @@ QPushButton::hover
       </spacer>
      </item>
      <item>
+      <widget class="QPushButton" name="btn_report">
+       <property name="font">
+        <font>
+         <pointsize>8</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Отчет по бронированию</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <spacer name="verticalSpacer_2">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -350,7 +361,6 @@ QPushButton::hover
        <property name="styleSheet">
         <string notr="true">QPushButton{
 color: rgb(0, 0, 0);
-	background-color: rgb(255, 0, 0);
 border-color: rgb(85, 0, 0);
 selection-background-color: rgb(255, 0, 0);
 }
