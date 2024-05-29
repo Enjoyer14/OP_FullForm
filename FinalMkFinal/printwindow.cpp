@@ -8,6 +8,8 @@ PrintWindow::PrintWindow(QWidget *parent)
 
     ui->setupUi(this);
 
+    setWindowIcon(QIcon("100446.png"));
+
     setWindowFlags(windowFlags() | Qt::WindowMaximizeButtonHint);
     setWindowFlags(windowFlags() | Qt::WindowMinimizeButtonHint);
 
@@ -22,6 +24,9 @@ PrintWindow::PrintWindow(QWidget *parent)
 
     ui->btn_deleteSort->hide();
     ui->btn_deleteSearch->hide();
+
+    this->setStyleSheet("background-color: rgb(244, 240, 247);");
+    ui->dateEdit->setMinimumDate(QDate::currentDate());
 }
 
 PrintWindow::~PrintWindow()
@@ -79,6 +84,8 @@ void PrintWindow::ReadDataBase(HData &dataH)
             buff.favors.clear();
         }
     }
+
+    HData::SortByArrivalDate(dataH, 1);
 
 }
 
@@ -184,6 +191,13 @@ void PrintWindow::printTable()
     }
 
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+    ui->tableView->setStyleSheet(
+        //"QTableView { background-color: rgb(205, 206, 209); }"  // Фон таблицы
+        "QHeaderView::section { background-color: rgb(230, 227, 232); }" // Фон заголовка
+        "QTableView::item { background-color: rgb(234, 228, 240); }"    // Фон ячеек
+        "QTableView::item:selected { background-color: rgb(100, 149, 237); }"  // Фон выбранной ячейки
+        );
 
 }
 
@@ -340,6 +354,7 @@ void PrintWindow::on_btn_Add_clicked()
     delete model;
 
     this->printTable();
+    WriteDataBase(*window.hdata);
 }
 
 void PrintWindow::handleDoubleClick(const QModelIndex &index)
@@ -380,11 +395,12 @@ void PrintWindow::on_btn_exit_clicked()
 
 void PrintWindow::on_btn_deleteSort_clicked()
 {
-    int a = QMessageBox::question(this, "Подтверждение", "Вы действительно хотите удалить этот объект(Sort)?", "Да", "Нет");
+    int a = QMessageBox::question(this, "Подтверждение", "Вы действительно хотите удалить этот объект?", "Да", "Нет");
 
     if(a == 0)
     {
         hdata->vecHotel.erase(hdata->vecHotel.begin() + this->index);
+        WriteDataBase(*hdata);
     }
 
     ui->btn_deleteSearch->hide();
@@ -398,7 +414,7 @@ void PrintWindow::on_btn_deleteSort_clicked()
 
 void PrintWindow::on_btn_deleteSearch_clicked()
 {
-    int a = QMessageBox::question(this, "Подтверждение", "Вы действительно хотите удалить этот объект(Search)?", "Да", "Нет");
+    int a = QMessageBox::question(this, "Подтверждение", "Вы действительно хотите удалить этот объект?", "Да", "Нет");
 
     if(a == 0)
     {
@@ -409,6 +425,7 @@ void PrintWindow::on_btn_deleteSearch_clicked()
             if(hdata->vecHotel[i].id == finder)
             {
                 hdata->vecHotel.erase(hdata->vecHotel.begin() + i);
+                WriteDataBase(*hdata);
             }
         }
     }
@@ -451,7 +468,7 @@ void PrintWindow::on_btn_diagram_clicked()
     chart->setTitle("Круговая диаграмма по типу комнат");
 
     QChartView *chartView = new QChartView(chart);
-
+    chartView->setWindowIcon(QIcon("diag.png"));
     chartView->setRenderHint(QPainter::Antialiasing);
     chartView->setWindowTitle("Диаграмма");
     chartView->resize(600, 500);
@@ -506,7 +523,6 @@ void PrintWindow::report_creator(int d, int m, int y)
 
     void PrintWindow::on_btn_report_clicked()
     {
-        this->hide();
         Report window;
         window.hdata = this->hdata;
         window.index = this->index;

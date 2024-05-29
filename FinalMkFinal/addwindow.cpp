@@ -9,6 +9,53 @@ AddWindow::AddWindow(QWidget *parent)
     ui->setupUi(this);
     ui->lineEdit_PhoneNumber->setValidator(new QDoubleValidator(0,1000000000000000,0,this));
     ui->lineEdit_NightCount->setValidator(new QIntValidator(1, 100, this));
+    setWindowIcon(QIcon("addicon.png"));
+    this->setStyleSheet("background-color: rgb(244, 240, 247);");
+
+    ui->lineEdit_FIO->setStyleSheet(
+        "QLineEdit {"
+        "   color: rgb(0, 0, 0);"
+        "   background-color: rgb(225, 216, 232);"
+        "   border: 2px solid rgb(166, 166, 166);"
+        "}"
+        );
+    ui->lineEdit_Name->setStyleSheet(
+        "QLineEdit {"
+        "   color: rgb(0, 0, 0);"
+        "   background-color: rgb(225, 216, 232);"
+        "   border: 2px solid rgb(166, 166, 166);"
+        "}"
+        );
+    ui->lineEdit_FatherName->setStyleSheet(
+        "QLineEdit {"
+        "   color: rgb(0, 0, 0);"
+        "   background-color: rgb(225, 216, 232);"
+        "   border: 2px solid rgb(166, 166, 166);"
+        "}"
+        );
+    ui->lineEdit_Email->setStyleSheet(
+        "QLineEdit {"
+        "   color: rgb(0, 0, 0);"
+        "   background-color: rgb(225, 216, 232);"
+        "   border: 2px solid rgb(166, 166, 166);"
+        "}"
+        );
+    ui->lineEdit_NightCount->setStyleSheet(
+        "QLineEdit {"
+        "   color: rgb(0, 0, 0);"
+        "   background-color: rgb(225, 216, 232);"
+        "   border: 2px solid rgb(166, 166, 166);"
+        "}"
+        );
+    ui->lineEdit_PhoneNumber->setStyleSheet(
+        "QLineEdit {"
+        "   color: rgb(0, 0, 0);"
+        "   background-color: rgb(225, 216, 232);"
+        "   border: 2px solid rgb(166, 166, 166);"
+        "}"
+        );
+
+    ui->dateEdit->setMinimumDate(QDate::currentDate());
 }
 AddWindow::~AddWindow()
 {
@@ -132,7 +179,7 @@ void AddWindow::on_btn_Add_clicked()
 
     if(ui->lineEdit_Email->text().indexOf("@") > 0)
     {
-        buff.eMail = ui->lineEdit_Email->text();
+        buff.eMail = ui->lineEdit_Email->text().remove(QChar::Space);
         ui->label_mail->setStyleSheet("color: black;");
     }
     else

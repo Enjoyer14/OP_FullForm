@@ -6,7 +6,8 @@ Report::Report(QWidget *parent)
     , ui(new Ui::Report)
 {
     ui->setupUi(this);
-    setWindowTitle("Моя форма");
+    setWindowTitle("Создание отчета");
+    setWindowIcon(QIcon("report1.png"));
 
     QFormLayout *layout = new QFormLayout(this);
 
@@ -23,6 +24,8 @@ Report::Report(QWidget *parent)
     connect(yesButton, &QPushButton::clicked, this, &Report::onYesClicked);
     connect(noButton, &QPushButton::clicked, this, &Report::onNoClicked);
 
+
+    dateEdit->setMinimumDate(QDate::currentDate());
     setLayout(layout);
 }
 

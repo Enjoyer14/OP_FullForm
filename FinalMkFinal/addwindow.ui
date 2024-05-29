@@ -7,13 +7,79 @@
     <x>0</x>
     <y>0</y>
     <width>449</width>
-    <height>658</height>
+    <height>605</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>449</width>
+    <height>575</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>449</width>
+    <height>625</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Добавление бронирования</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="5" column="0">
+    <layout class="QFormLayout" name="formLayout_2">
+     <item row="1" column="0">
+      <widget class="QPushButton" name="pushButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+background-color: rgb(255, 0, 0);
+selection-background-color: rgb(126, 0, 0);
+color: rgb(0, 0, 0);
+}
+QPushButton::hover{
+	background-color: rgb(170, 0, 0);
+}</string>
+       </property>
+       <property name="text">
+        <string>Выйти</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QPushButton" name="btn_Add">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+background-color: rgb(0, 170, 0);
+selection-background-color: rgb(0, 255, 0);
+color: rgb(0, 0, 0);
+}
+QPushButton::hover{
+	background-color: rgb(45, 122, 28);
+}</string>
+       </property>
+       <property name="text">
+        <string>Добавить</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="6" column="0">
+    <widget class="QLabel" name="label_isCorrect">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 0, 0);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
    <item row="3" column="0">
     <layout class="QFormLayout" name="formLayout">
      <item row="0" column="0">
@@ -25,6 +91,12 @@
      </item>
      <item row="0" column="1">
       <widget class="QComboBox" name="box_Corpus">
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(225, 216, 232);
+border: 2px solid rgb(166, 166, 166);
+</string>
+       </property>
        <item>
         <property name="text">
          <string>Альфа</string>
@@ -61,6 +133,12 @@
      </item>
      <item row="1" column="1">
       <widget class="QComboBox" name="box_TypeRoom">
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(225, 216, 232);
+border: 2px solid rgb(166, 166, 166);
+</string>
+       </property>
        <item>
         <property name="text">
          <string>Стандарт</string>
@@ -92,6 +170,13 @@
      </item>
      <item row="2" column="1">
       <widget class="QLineEdit" name="lineEdit_FIO">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+color: rgb(0, 0, 0);
+border-color: rgb(0, 0, 0);
+background-color: rgb(238, 223, 242);
+}</string>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -111,6 +196,9 @@
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
         <widget class="QCheckBox" name="checkBox_Pool">
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <property name="text">
           <string>Бассейн(+1200 руб/сутки)</string>
          </property>
@@ -168,7 +256,15 @@
       </widget>
      </item>
      <item row="7" column="1">
-      <widget class="QLineEdit" name="lineEdit_Email"/>
+      <widget class="QLineEdit" name="lineEdit_Email">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+color: rgb(0, 0, 0);
+border-color: rgb(85, 0, 0);
+background-color: rgb(200, 192, 209);
+}</string>
+       </property>
+      </widget>
      </item>
      <item row="8" column="0">
       <widget class="QLabel" name="label_phone">
@@ -179,6 +275,13 @@
      </item>
      <item row="8" column="1">
       <widget class="QLineEdit" name="lineEdit_PhoneNumber">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+color: rgb(0, 0, 0);
+border-color: rgb(85, 0, 0);
+background-color: rgb(200, 192, 209);
+}</string>
+       </property>
        <property name="inputMask">
         <string/>
        </property>
@@ -199,6 +302,12 @@
      </item>
      <item row="9" column="1">
       <widget class="QDateEdit" name="dateEdit">
+       <property name="styleSheet">
+        <string notr="true">color: rgb(0, 0, 0);
+background-color: rgb(225, 216, 232);
+border: 2px solid rgb(166, 166, 166);
+</string>
+       </property>
        <property name="maximumDate">
         <date>
          <year>3000</year>
@@ -226,7 +335,15 @@
       </widget>
      </item>
      <item row="10" column="1">
-      <widget class="QLineEdit" name="lineEdit_NightCount"/>
+      <widget class="QLineEdit" name="lineEdit_NightCount">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+color: rgb(0, 0, 0);
+border-color: rgb(85, 0, 0);
+background-color: rgb(200, 192, 209);
+}</string>
+       </property>
+      </widget>
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="label_n">
@@ -237,6 +354,13 @@
      </item>
      <item row="3" column="1">
       <widget class="QLineEdit" name="lineEdit_Name">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+color: rgb(0, 0, 0);
+border-color: rgb(85, 0, 0);
+background-color: rgb(200, 192, 209);
+}</string>
+       </property>
        <property name="maxLength">
         <number>40</number>
        </property>
@@ -245,12 +369,19 @@
      <item row="4" column="0">
       <widget class="QLabel" name="label_o">
        <property name="text">
-        <string>Отчество</string>
+        <string>Отчество*</string>
        </property>
       </widget>
      </item>
      <item row="4" column="1">
       <widget class="QLineEdit" name="lineEdit_FatherName">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+color: rgb(0, 0, 0);
+border-color: rgb(85, 0, 0);
+background-color: rgb(200, 192, 209);
+}</string>
+       </property>
        <property name="text">
         <string/>
        </property>
@@ -264,49 +395,15 @@
        <property name="autoFillBackground">
         <bool>true</bool>
        </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
        <property name="text">
         <string>3400</string>
        </property>
       </widget>
      </item>
     </layout>
-   </item>
-   <item row="4" column="0">
-    <layout class="QFormLayout" name="formLayout_2">
-     <item row="0" column="0">
-      <widget class="QPushButton" name="pushButton">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 0, 0);
-color: rgb(0, 0, 0);</string>
-       </property>
-       <property name="text">
-        <string>Выйти</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QPushButton" name="btn_Add">
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(0, 170, 0);
-selection-background-color: rgb(0, 255, 0);
-color: rgb(0, 0, 0);</string>
-       </property>
-       <property name="text">
-        <string>Добавить</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item row="5" column="0">
-    <widget class="QLabel" name="label_isCorrect">
-     <property name="styleSheet">
-      <string notr="true">color: rgb(255, 0, 0);</string>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
    </item>
   </layout>
  </widget>

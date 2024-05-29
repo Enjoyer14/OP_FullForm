@@ -45,10 +45,10 @@ void HData::SortByCost(HData& data, int mode)
 {
     for (int l = 0; l < data.vecHotel.size() - 1; l++) {
         for (int j = 0; j < data.vecHotel.size() - l - 1; j++) {
-            if (mode == 1 && data.vecHotel[j].cost > data.vecHotel[j + 1].cost) {
+            if (mode == 1 && data.vecHotel[j].fullCost > data.vecHotel[j + 1].fullCost) {
                 std::swap(data.vecHotel[j], data.vecHotel[j + 1]);
             }
-            if (mode == 2 && data.vecHotel[j].cost < data.vecHotel[j + 1].cost) {
+            if (mode == 2 && data.vecHotel[j].fullCost < data.vecHotel[j + 1].fullCost) {
                 std::swap(data.vecHotel[j], data.vecHotel[j + 1]);
             }
         }

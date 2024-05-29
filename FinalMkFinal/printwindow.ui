@@ -48,6 +48,7 @@
 color: rgb(0, 0, 0);
 border-color: rgb(85, 0, 0);
 	selection-background-color: rgb(112, 255, 60);
+	background-color: rgb(215, 207, 227);
 }
 QPushButton::hover{
 	background-color: rgb(82, 170, 11);
@@ -78,6 +79,17 @@ QPushButton::hover{
          <family>Arial</family>
         </font>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+color: rgb(0, 0, 0);
+border-color: rgb(85, 0, 0);
+selection-background-color: rgb(255, 0, 0);
+	background-color: rgb(215, 207, 227);
+}
+QPushButton::hover{
+	background-color: rgb(224, 65, 65);
+}</string>
+       </property>
        <property name="text">
         <string>Удалить</string>
        </property>
@@ -89,6 +101,17 @@ QPushButton::hover{
         <font>
          <family>Arial</family>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+color: rgb(0, 0, 0);
+border-color: rgb(85, 0, 0);
+selection-background-color: rgb(255, 0, 0);
+	background-color: rgb(215, 207, 227);
+}
+QPushButton::hover{
+	background-color: rgb(224, 65, 65);
+}</string>
        </property>
        <property name="text">
         <string>Удалить</string>
@@ -127,6 +150,9 @@ QPushButton::hover{
      </item>
      <item>
       <widget class="QComboBox" name="box_type_sort">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
        <item>
         <property name="text">
          <string>По корпусу</string>
@@ -144,13 +170,16 @@ QPushButton::hover{
        </item>
        <item>
         <property name="text">
-         <string>По стоимости</string>
+         <string>По полной стоимости</string>
         </property>
        </item>
       </widget>
      </item>
      <item>
       <widget class="QComboBox" name="box_direct_sort">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
        <item>
         <property name="text">
          <string>По возрастанию</string>
@@ -171,10 +200,16 @@ QPushButton::hover{
         </font>
        </property>
        <property name="mouseTracking">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="styleSheet">
-        <string notr="true"/>
+        <string notr="true">QPushButton{
+background-color: rgb(215, 207, 227);
+color: rgb(0, 0, 0);
+}
+QPushButton::hover{
+	background-color: rgb(223, 202, 235);
+}</string>
        </property>
        <property name="text">
         <string>Показать</string>
@@ -212,6 +247,9 @@ QPushButton::hover{
      </item>
      <item>
       <widget class="QComboBox" name="box_type_serach">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
        <item>
         <property name="text">
          <string>По типу комнаты</string>
@@ -231,6 +269,9 @@ QPushButton::hover{
      </item>
      <item>
       <widget class="QComboBox" name="box_direct_search">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
        <item>
         <property name="text">
          <string>Стандарт</string>
@@ -255,6 +296,9 @@ QPushButton::hover{
      </item>
      <item>
       <widget class="QDateEdit" name="dateEdit">
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 255, 255);</string>
+       </property>
        <property name="maximumDate">
         <date>
          <year>3000</year>
@@ -288,6 +332,15 @@ QPushButton::hover{
          <family>Arial</family>
         </font>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+background-color: rgb(215, 207, 227);
+color: rgb(0, 0, 0);
+}
+QPushButton::hover{
+	background-color: rgb(223, 202, 235);
+}</string>
+       </property>
        <property name="text">
         <string>Показать</string>
        </property>
@@ -312,6 +365,15 @@ QPushButton::hover{
         <font>
          <family>Arial</family>
         </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+background-color: rgb(215, 207, 227);
+color: rgb(0, 0, 0);
+}
+QPushButton::hover{
+	background-color: rgb(223, 202, 235);
+}</string>
        </property>
        <property name="text">
         <string>Диаграмма</string>
@@ -338,6 +400,15 @@ QPushButton::hover{
          <pointsize>8</pointsize>
         </font>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+background-color: rgb(215, 207, 227);
+color: rgb(0, 0, 0);
+}
+QPushButton::hover{
+	background-color: rgb(223, 202, 235);
+}</string>
+       </property>
        <property name="text">
         <string>Отчет по бронированию</string>
        </property>
@@ -363,6 +434,7 @@ QPushButton::hover{
 color: rgb(0, 0, 0);
 border-color: rgb(85, 0, 0);
 selection-background-color: rgb(255, 0, 0);
+background-color: rgb(215, 207, 227);
 }
 QPushButton::hover{
 	background-color: rgb(170, 0, 0);
